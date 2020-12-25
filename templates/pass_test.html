@@ -61,19 +61,20 @@
         {% for t in test %}
             <div class="testclass">
                 {{ t.question }} <br>
-                {% if not t.question_type %}
+
+                {% if t.question.type_of_question == "Выбор" %}
                     {% for a in t.answer%}
                         <input type="checkbox" class="form-check-input" id="answer" name="{{ t.question.id }}" value="{{ a }}">
                         <label class="form-check-label" for="same-address">{{ a }}</label>
                         <br>
                     {% endfor %}
                 {% else %}
-                    {% for a in answer%}
+                    {% for a in t.answer %}
                         <div class="form-check">
                             <label class="form-check-label" for="same-address">{{ a }}</label>
                         </div>
                     {% endfor %}
-                    <input type="text" placeholder="Введите ответ" id="answer" name="answer">
+                    <input type="text" placeholder="Введите ответ" id="answer" name="{{ t.question.id }}">
                 {% endif %}
             </div>
             <br>
